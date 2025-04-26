@@ -1,122 +1,24 @@
 [
   {
-    "id": 1,
-    "name": "Updated Landmark",
+    "name": "Eiffel Tower",
     "location": {
-      "lat": 40.7128,
-      "lng": -74.006
+      "lat": 48.858844,
+      "lng": 2.294351
     },
-    "description": "An updated landmark for testing",
-    "category": "Updated Category"
+    "description": "An iconic symbol of France, located in Paris.",
+    "category": "historical",
+    "note": "A must-visit landmark.",
+    "id": 1
   },
   {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
+    "name": "Great Wall of China",
     "location": {
-      "lat": 40.7128,
-      "lng": -74.006
+      "lat": 40.431908,
+      "lng": 116.570374
     },
-    "category": "Test Category",
-    "id": 5
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 6
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 7
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 8
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 9
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 10
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 11
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 12
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 13
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 14
-  },
-  {
-    "name": "New Landmark",
-    "description": "A new landmark for testing",
-    "location": {
-      "lat": 40.7128,
-      "lng": -74.006
-    },
-    "category": "Test Category",
-    "id": 15
+    "description": "A historic wall stretching thousands of miles across China.",
+    "category": "historical",
+    "note": "One of the Seven Wonders of the World.",
+    "id": 2
   }
 ]
