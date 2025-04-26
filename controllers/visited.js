@@ -41,7 +41,7 @@ const getVisitedLandmarkByID = (req, res) => {
   try {
     const visitedLandmarks = JSON.parse(fs.readFileSync(visitedPath, "utf8"));
     const visitedLandmark = visitedLandmarks.find(
-      (vlm) => vlm.id === parseInt(id)
+      (vlm) => vlm.landmark_id === parseInt(id)
     );
     if (!visitedLandmark) {
       return res.status(404).json({ error: "Visited landmark not found" });

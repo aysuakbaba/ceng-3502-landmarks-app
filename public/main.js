@@ -9,6 +9,13 @@ let currentLat = null;
 let currentLng = null;
 let editingLandmarkName = null;
 let selectedVisitedLandmark = null;
+let selectedCategory = null;
+
+const landmarkFilterOption = document.getElementById("landmarkFilter");
+landmarkFilterOption.addEventListener("change", (event) => {
+  selectedCategory = event.target.value;
+  renderLandmarkList(selectedCategory);
+});
 
 map.on("click", (e) => {
   currentLat = e.latlng.lat.toFixed(6);
@@ -211,6 +218,22 @@ function addToVisited(name) {
     alert("Landmark not found!");
     return;
   }
+  if (selectedVisitedLandmark.visited) {
+    fetch(`http://localhost:5000/api/visited/${selectedVisitedLandmark.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        selectedVisitedLandmark.visited_date = data.visited_date;
+        selectedVisitedLandmark.visitor_name = data.visitor_name;
+
+        alert(
+          `Landmark "${selectedVisitedLandmark.name}" is already marked as visited on ${selectedVisitedLandmark.visited_date} by ${selectedVisitedLandmark.visitor_name}.`
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching visited landmark:", error);
+      });
+    return;
+  }
   document.getElementById("visitedLandmarkModal").style.display = "block";
 }
 
@@ -219,14 +242,14 @@ document.getElementById("closeVisitedModal").onclick = () => {
   visitedLandmarkForm.reset();
   selectedVisitedLandmark = null;
 };
-
-function renderLandmarkList() {
+function renderLandmarkList(selectedCategory) {
   const list = document.getElementById("landmarkList");
   list.innerHTML = "";
 
   landmarks.forEach((landmark) => {
     const isEditing = editingLandmarkName === landmark.name;
     const listItem = document.createElement("li");
+    if (selectedCategory === "visited" && !landmark.visited) return;
 
     listItem.innerHTML = `
         <div style="border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin-bottom: 10px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
@@ -295,7 +318,6 @@ function renderLandmarkList() {
                   </button>
                   <button style="padding: 5px 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;"
                     onclick="addToVisited('${landmark.name}')"
-                    ${landmark.visited ? "disabled" : ""}
                   >
                     ${landmark.visited ? "VISITED" : "ADD TO VISITED"}
                   </button>
