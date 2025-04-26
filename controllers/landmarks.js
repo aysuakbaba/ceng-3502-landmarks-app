@@ -15,9 +15,9 @@ const getAllLandmarks = (req, res) => {
 const createLandmarks = (req, res) => {
   try {
     const landmarks = JSON.parse(fs.readFileSync(landmarksPath, "utf8"));
-    const { name, location, description, category } = req.body;
+    const { name, location, description, category, note } = req.body;
 
-    if (!name || !location || !description || !category) {
+    if (!name || !location || !description || !category || !note) {
       return res.status(400).json({
         error: "Missing required fields: name, location, description",
       });
@@ -30,6 +30,7 @@ const createLandmarks = (req, res) => {
       location: { lat: +lat, lng: +lng },
       description,
       category,
+      note,
     };
     newLandmark.id =
       landmarks.length > 0 ? landmarks[landmarks.length - 1].id + 1 : 1;

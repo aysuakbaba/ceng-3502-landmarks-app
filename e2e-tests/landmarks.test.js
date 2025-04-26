@@ -17,6 +17,7 @@ describe("Landmarks", () => {
             longitude: 2.2945,
           },
           category: "Monument",
+          note: "Visited in 2022",
         },
         {
           id: 4,
@@ -28,6 +29,7 @@ describe("Landmarks", () => {
             longitude: -72.545,
           },
           category: "Historical",
+          note: "Visited in 2021",
         },
         {
           id: 5,
@@ -39,6 +41,7 @@ describe("Landmarks", () => {
             longitude: 151.2153,
           },
           category: "Cultural",
+          note: "Visited in 2020",
         },
       ]);
     });
@@ -57,6 +60,7 @@ describe("Landmarks", () => {
         description: expect.any(String),
         location: expect.any(Object),
         category: expect.any(String),
+        note: expect.any(String),
       })
     );
   });
@@ -67,6 +71,7 @@ describe("Landmarks", () => {
       description: "A new landmark for testing",
       location: { lat: 40.7128, lng: -74.006 },
       category: "Test Category",
+      note: "Test Note",
     };
 
     const response = await request(app)
@@ -81,6 +86,7 @@ describe("Landmarks", () => {
         description: newLandmark.description,
         location: newLandmark.location,
         category: newLandmark.category,
+        note: newLandmark.note,
       })
     );
   });
@@ -94,6 +100,7 @@ describe("Landmarks", () => {
         description: expect.any(String),
         location: expect.any(Object),
         category: expect.any(String),
+        note: expect.any(String),
       })
     );
   });
@@ -104,6 +111,7 @@ describe("Landmarks", () => {
       description: "An updated landmark for testing",
       location: { lat: 40.7128, lng: -74.006 },
       category: "Updated Category",
+      note: "Updated Note",
     };
 
     const response = await request(app)
@@ -118,6 +126,7 @@ describe("Landmarks", () => {
         description: updatedLandmark.description,
         location: updatedLandmark.location,
         category: updatedLandmark.category,
+        note: updatedLandmark.note,
       })
     );
   });
