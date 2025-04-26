@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landmark Creator</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Click on the Map to Add Landmarks</h2>
+    <div id="map"></div>
+    
+    <h3>Selected Landmarks</h3>
+    <ul id="landmarkList"></ul>
+
+    <h3>Landmark Details</h3>
+    <div id="landmarkModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.4);">
+        <div style="background-color:#fff; margin:15% auto; padding:20px; border:1px solid #888; width:50%;">
+          <h2>Add Landmark Details</h2>
+          <form id="landmarkForm">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="desc">Description:</label><br>
+            <textarea id="desc" name="desc" required></textarea><br><br>
+            
+            <label for="landmarkCategory">Category:</label><br>
+            <select id="landmarkCategory" name="category">
+              <option value="historical">Historical</option>
+              <option value="natural">Natural</option>
+              <option value="cultural">Cultural</option>
+              <option value="modern">Modern</option>
+            </select><br><br>
+            
+            <button type="submit">Save</button>
+            <button type="button" id="closeModal">Cancel</button>
+          </form>
+        </div>
+      </div>
+    
+    <button onclick="sendLandmarks()">Add Notes</button>
+    <button onclick="sendLandmarks()">Visited Landmarks</button>
+    <button onclick="sendLandmarks()">Create Visiting Plans</button>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   <script src="main.js"></script>
+
+</body>
+</html>
