@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "landmark_id": 5,
+    "visited_date": "2025-04-26",
+    "visitor_name": "John Doe"
+  },
+  {
+    "id": 2,
+    "landmark_id": 2,
+    "visited_date": "2025-04-20",
+    "visitor_name": "Jane Smith"
+  },
+  {
+    "id": 3,
+    "landmark_id": 7,
+    "visited_date": "2025-04-22",
+    "visitor_name": "Alice Johnson"
+  },
+  {
+    "id": 4,
+    "landmark_id": 1,
+    "visited_date": "2025-04-25",
+    "visitor_name": "Bob Brown"
+  }
+]

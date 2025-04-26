@@ -9,7 +9,9 @@ const app = express();
 app.use(bodyParser.json());
 
 const landmarkRoutes = require("./routes/landmarks");
+const visitedRoutes = require("./routes/visited");
 app.use("/api", landmarkRoutes);
+app.use("/api", visitedRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to my custom Node.js backend!");
