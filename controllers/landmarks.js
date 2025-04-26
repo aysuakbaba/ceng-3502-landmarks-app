@@ -5,7 +5,25 @@ const landmarksPath = path.join(__dirname, "../data/landmarks.json");
 const getAllLandmarks = (req, res) => {
   try {
     const landmarks = JSON.parse(fs.readFileSync(landmarksPath, "utf8"));
-    res.json(landmarks);
+    const visitedLandmarkPath = path.join(
+      __dirname,
+      "../data/visitedLandmarks.json"
+    );
+
+    const visitedLandmarks = JSON.parse(
+      fs.readFileSync(visitedLandmarkPath, "utf8")
+    );
+
+    const visitedLandmarkIds = visitedLandmarks.map((lm) => lm.landmark_id);
+
+    const landmarksWithVisitedStatus = landmarks.map((landmark) => {
+      return {
+        ...landmark,
+        visited: visitedLandmarkIds.includes(landmark.id),
+      };
+    });
+
+    res.json(landmarksWithVisitedStatus);
   } catch (parseError) {
     console.error("Error parsing landmarks JSON:", parseError);
     res.status(500).json({ error: "Internal server error" });

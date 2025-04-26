@@ -18,6 +18,7 @@ describe("Landmarks", () => {
           },
           category: "Monument",
           note: "Visited in 2022",
+          visited: true,
         },
         {
           id: 4,
@@ -30,6 +31,7 @@ describe("Landmarks", () => {
           },
           category: "Historical",
           note: "Visited in 2021",
+          visited: true,
         },
         {
           id: 5,
@@ -42,6 +44,7 @@ describe("Landmarks", () => {
           },
           category: "Cultural",
           note: "Visited in 2020",
+          visited: true,
         },
       ]);
     });
@@ -61,6 +64,7 @@ describe("Landmarks", () => {
         location: expect.any(Object),
         category: expect.any(String),
         note: expect.any(String),
+        visited: expect.any(Boolean),
       })
     );
   });
