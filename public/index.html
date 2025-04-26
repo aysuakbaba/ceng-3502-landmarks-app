@@ -14,8 +14,8 @@
     
     <h3>Selected Landmarks</h3>
     <ul id="landmarkList"></ul>
+    
 
-    <h3>Landmark Details</h3>
     <div id="landmarkModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.4);">
         <div style="background-color:#fff; margin:15% auto; padding:20px; border:1px solid #888; width:50%;">
           <h2>Add Landmark Details</h2>
@@ -35,6 +35,9 @@
             </select><br><br>
             <label for="notes">Any notes? </label><br>
             <textarea id="note" placeholder="Add your note here..."></textarea>
+            <br><br>
+        
+            
             
             <button type="submit">Save</button>
             <button type="button" id="closeModal">Cancel</button>
@@ -42,9 +45,6 @@
         </div>
       </div>
     
-    <button onclick="sendLandmarks()">Add Notes</button>
-    <button onclick="sendLandmarks()">Visited Landmarks</button>
-    <button onclick="sendLandmarks()">Create Visiting Plans</button>
 
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
