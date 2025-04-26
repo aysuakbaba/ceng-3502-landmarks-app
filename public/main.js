@@ -8,6 +8,7 @@ let landmarks = []; // Store fetched landmarks
 let currentLat = null;
 let currentLng = null;
 let editingLandmarkName = null;
+let selectedVisitedLandmark = null;
 
 map.on("click", (e) => {
   currentLat = e.latlng.lat.toFixed(6);
@@ -52,8 +53,7 @@ landmarkForm.addEventListener("submit", async (event) => {
       throw new Error("Failed to save landmark");
     }
 
-    const savedLandmark = await response.json();
-    console.log("Server response:", savedLandmark);
+    await response.json();
     alert("Landmark saved successfully!");
 
     addLandmarkMarker(landmarkData);
@@ -83,6 +83,11 @@ function updateLandmark(name) {
   renderLandmarkList();
 }
 
+function cancelEdit() {
+  editingLandmarkName = null;
+  renderLandmarkList();
+}
+
 async function saveLandmark(name) {
   const landmark = landmarks.find((lm) => lm.name === name);
   if (!landmark) return;
@@ -109,9 +114,6 @@ async function saveLandmark(name) {
         }),
       }
     );
-
-    console.log("Server response:", response);
-
     if (!response.ok) {
       throw new Error("Failed to update landmark on the server");
     }
@@ -159,13 +161,71 @@ function deleteLandmark(id) {
     });
 }
 
+const visitedLandmarkForm = document.getElementById("visitedLandmarkForm");
+
+visitedLandmarkForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!selectedVisitedLandmark) {
+    alert("No landmark selected!");
+    return;
+  }
+
+  const visitedDate = document.getElementById("visitedDate").value;
+  const visitorName = document.getElementById("visitorName").value;
+
+  const landmarkID = selectedVisitedLandmark.id;
+
+  const visitedData = {
+    landmark_id: landmarkID,
+    visited_date: visitedDate,
+    visitor_name: visitorName,
+  };
+
+  try {
+    const response = await fetch("http://localhost:5000/api/visited", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(visitedData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to save visited landmark");
+    }
+
+    alert("Visited landmark saved successfully!");
+    document.getElementById("visitedLandmarkModal").style.display = "none";
+    visitedLandmarkForm.reset();
+    selectedVisitedLandmark = null;
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Error saving visited landmark.");
+  }
+});
+
+function addToVisited(name) {
+  selectedVisitedLandmark = landmarks.find((lm) => lm.name === name);
+  if (!selectedVisitedLandmark) {
+    alert("Landmark not found!");
+    return;
+  }
+  document.getElementById("visitedLandmarkModal").style.display = "block";
+}
+
+document.getElementById("closeVisitedModal").onclick = () => {
+  document.getElementById("visitedLandmarkModal").style.display = "none";
+  visitedLandmarkForm.reset();
+  selectedVisitedLandmark = null;
+};
+
 function renderLandmarkList() {
   const list = document.getElementById("landmarkList");
   list.innerHTML = "";
 
   landmarks.forEach((landmark) => {
     const isEditing = editingLandmarkName === landmark.name;
-
     const listItem = document.createElement("li");
 
     listItem.innerHTML = `
@@ -235,8 +295,9 @@ function renderLandmarkList() {
                   </button>
                   <button style="padding: 5px 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;"
                     onclick="addToVisited('${landmark.name}')"
+                    ${landmark.visited ? "disabled" : ""}
                   >
-                    ADD TO VISITED LANDMARKS
+                    ${landmark.visited ? "VISITED" : "ADD TO VISITED"}
                   </button>
                 `
             }
